@@ -10,73 +10,71 @@
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.7</version>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>2.9</version>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
             <version>1.1</version>
             <executions>
                <execution>
-                  <id>id.validate</id>
-                  <phase>validate</phase>
+                  <id>id.pre-site</id>
+                  <phase>pre-site</phase>
                   <goals>
                      <goal>run</goal>
                   </goals>
                   <configuration>
                      <tasks>
-                        <echo>validate phase</echo>
+                        <echo>pre-site phase</echo>
                      </tasks>
                   </configuration>
                </execution>
-            
+               
                <execution>
-                  <id>id.compile</id>
-                  <phase>compile</phase>
+                  <id>id.site</id>
+                  <phase>site</phase>
                   <goals>
                      <goal>run</goal>
                   </goals>
                   <configuration>
                      <tasks>
-                        <echo>compile phase</echo>
+                        <echo>site phase</echo>
                      </tasks>
                   </configuration>
                </execution>
-            
+               
                <execution>
-                  <id>id.test</id>
-                  <phase>test</phase>
+                  <id>id.post-site</id>
+                  <phase>post-site</phase>
                   <goals>
                      <goal>run</goal>
                   </goals>
                   <configuration>
                      <tasks>
-                        <echo>test phase</echo>
+                        <echo>post-site phase</echo>
                      </tasks>
                   </configuration>
                </execution>
-            
+               
                <execution>
-                  <id>id.package</id>
-                  <phase>package</phase>
+                  <id>id.site-deploy</id>
+                  <phase>site-deploy</phase>
                   <goals>
                      <goal>run</goal>
                   </goals>
                   <configuration>
                      <tasks>
-                        <echo>package phase</echo>
+                        <echo>site-deploy phase</echo>
                      </tasks>
                   </configuration>
                </execution>
-            
-               <execution>
-                  <id>id.deploy</id>
-                  <phase>deploy</phase>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-                  <configuration>
-                     <tasks>
-                        <echo>deploy phase</echo>
-                     </tasks>
-                  </configuration>
-               </execution>
+               
             </executions>
          </plugin>
       </plugins>
