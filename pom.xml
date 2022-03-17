@@ -6,77 +6,33 @@
    <groupId>com.companyname.projectgroup</groupId>
    <artifactId>project</artifactId>
    <version>1.0</version>
-   <build>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.7</version>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>2.9</version>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.1</version>
-            <executions>
-               <execution>
-                  <id>id.pre-site</id>
-                  <phase>pre-site</phase>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-                  <configuration>
-                     <tasks>
-                        <echo>pre-site phase</echo>
-                     </tasks>
-                  </configuration>
-               </execution>
-               
-               <execution>
-                  <id>id.site</id>
-                  <phase>site</phase>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-                  <configuration>
-                     <tasks>
-                        <echo>site phase</echo>
-                     </tasks>
-                  </configuration>
-               </execution>
-               
-               <execution>
-                  <id>id.post-site</id>
-                  <phase>post-site</phase>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-                  <configuration>
-                     <tasks>
-                        <echo>post-site phase</echo>
-                     </tasks>
-                  </configuration>
-               </execution>
-               
-               <execution>
-                  <id>id.site-deploy</id>
-                  <phase>site-deploy</phase>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-                  <configuration>
-                     <tasks>
-                        <echo>site-deploy phase</echo>
-                     </tasks>
-                  </configuration>
-               </execution>
-               
-            </executions>
-         </plugin>
-      </plugins>
-   </build>
+   <profiles>
+      <profile>
+         <id>test</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-antrun-plugin</artifactId>
+                  <version>1.1</version>
+                  <executions>
+                     <execution>
+                        <phase>test</phase>
+                        <goals>
+                           <goal>run</goal>
+                        </goals>
+                        <configuration>
+                           <tasks>
+                              <echo>Using env.test.properties</echo>
+                              <copy file="src/main/resources/env.test.properties"
+                                 tofile="${project.build.outputDirectory}/env.properties"/>
+                           </tasks>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
 </project>
